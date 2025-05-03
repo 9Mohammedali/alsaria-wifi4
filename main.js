@@ -59,23 +59,40 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 // ========== إعدادات التطبيق ==========
+// ... بداية الكود بدون تغيير ...
+
+// ========== إعدادات التطبيق ==========
 let categories = [];
 let prices = {}; // {cat: price}
 const colors = {
   "100": "f100", "200": "f200", "250": "f250", "500": "f500", "1000": "f1000",
   "1500": "f1500", "2000": "f2000", "3000": "f3000", "4000": "f4000"
 };
-let saleCounters = {};
-let cardsData = {};
-let userData = null;
-let showAllLogs = false;
-let usersMap = {};
-let soldContent = "";
-let soldCategory = "";
-let allUsers = [];
-let isOwner = false;
-let allCategoriesDocId = "";
+// ... بقية المتغيرات ...
 
+// ========== إحصائيات الكروت ==========
+async function updateStats() {
+  cardsData = {};
+  for (let cat of categories) cardsData[cat] = [];
+  const q = query(collection(db, "cards"), where("sold", "==", false));
+  const snapshot = await getDocs(q);
+  snapshot.forEach(docx => {
+    const d = docx.data();
+    if (categories.includes(d.category)) cardsData[d.category].push({ id: docx.id, code: d.code });
+  });
+  const stats = document.getElementById("card-stats");
+  stats.innerHTML = "";
+  categories.forEach(cat => {
+    const count = cardsData[cat].length;
+    // أضف لون حسب الفئة عبر class (مثلاً: f100, f200...)
+    stats.innerHTML += `<div class="stat-circle ${colors[cat]||'f100'}">
+      ${cat}
+      <span>${count}</span>
+    </div>`;
+  });
+}
+
+// ... أكمل بقية الكود بدون تغيير ...
 // ========== مصادقة ودوال مستخدم ==========
 window.addEventListener('DOMContentLoaded', () => {
 document.getElementById('login-btn').onclick = async () => {
