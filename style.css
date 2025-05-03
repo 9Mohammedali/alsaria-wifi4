@@ -1,4 +1,3 @@
-/* ====== RESET & BASE ====== */
 html, body {
   height: 100%;
   min-height: 100vh;
@@ -6,79 +5,27 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.05);
   background: linear-gradient(to bottom, #e0f7fa 0%, #b3e5fc 50%, #0288d1 100%);
 }
 
-body {
-  min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Tajawal', Arial, sans-serif;
-  color: #223;
-}
-
-/* ====== UNIVERSAL FLEX CENTER FOR MAIN SECTIONS ====== */
-#auth-section,
-#main-section {
-  min-height: 400px;
-  min-width: 0;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-}
-
-/* ====== CONTAINER & CARDS ====== */
-.container, .card, .center {
-  padding: 22px 16px;
-  margin: 24px auto 0 auto;
-  width: 100%;
-  max-width: 420px;
-  min-width: 0;
-  background: #fff;
-  border-radius: 13px;
-  box-shadow: 0 2px 14px #b5ccd8;
-  text-align: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@media (max-width:700px) {
-  .container, .card, .center {
-    max-width: 98vw !important;
-    width: 98vw !important;
-    padding: 14px 2vw !important;
-    margin: 20px auto 0 auto;
-  }
-}
-
-/* ====== HEADER ====== */
+/* الهيدر يظهر دائماً في الأعلى */
 header {
-  width: 100%;
-  max-width: 900px;
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  width: 100vw;
+  z-index: 1000;
+  border-radius: 0 0 13px 13px;
+  box-shadow: 0 2px 16px #b5ccd8;
+  padding: 13px 11px 9px 11px;
+  background: #0288d1;
+  color: #fff;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: #0288d1;
-  color: #fff;
-  padding: 13px 11px 9px 11px;
   align-items: center;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 1px 12px #b5ccd8;
-  box-sizing: border-box;
   margin: 0 auto;
+  box-sizing: border-box;
+  min-height: 62px;
 }
 .header-info span {
   margin-left: 11px;
@@ -109,7 +56,61 @@ header {
   border: 1.2px solid #43a047;
 }
 
-/* ====== RESPONSIVE FLEX AND SCROLL ====== */
+/* عزل توسيط الجسم - فقط الأقسام تتوسط */
+body {
+  min-height: 100vh;
+  font-family: 'Tajawal', Arial, sans-serif;
+  color: #223;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* مساحة علوية أسفل الهيدر للمحتوى */
+#main-section, #auth-section {
+  min-height: 400px;
+  min-width: 0;
+  width: 100%;
+  max-width: 900px;
+  margin: 75px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 700px) {
+  #main-section, #auth-section { margin-top: 65px; }
+}
+
+/* كونتينر والكروت */
+.container, .card, .center {
+  padding: 22px 16px;
+  margin: 24px auto 0 auto;
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 2px 14px #b5ccd8;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width:700px) {
+  .container, .card, .center {
+    max-width: 98vw !important;
+    width: 98vw !important;
+    padding: 14px 2vw !important;
+    margin: 20px auto 0 auto;
+  }
+}
+
+/* أقسام العرض */
 .sales-section, .scroll-stats {
   display: flex;
   flex-wrap: wrap;
@@ -119,7 +120,6 @@ header {
   width: 100%;
   box-sizing: border-box;
 }
-
 @media (max-width:700px) {
   .sales-section, .scroll-stats {
     flex-direction: column;
@@ -128,7 +128,7 @@ header {
   }
 }
 
-/* ====== STAT CARDS ====== */
+/* إحصائيات وبطاقات */
 .sales-card, .stat-circle {
   min-width: 120px;
   max-width: 99vw;
@@ -140,7 +140,6 @@ header {
   padding: 14px 17px;
   text-align: center;
 }
-
 @media (max-width:700px) {
   .sales-card, .stat-circle {
     min-width: 90vw !important;
@@ -149,7 +148,6 @@ header {
     margin: 7px auto 0 auto;
   }
 }
-
 .stat-circle {
   display: inline-block;
   font-size: 1.08em;
@@ -160,7 +158,7 @@ header {
 }
 .stat-circle span { display: block; font-size: 1.25em; color: #333; }
 
-/* ====== TABLES ====== */
+/* الجداول مرنة وقابلة للسحب */
 table, .users-permissions-table {
   width: 100%;
   min-width: 0;
@@ -177,6 +175,8 @@ table, .users-permissions-table {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
 }
 th, td {
   border: 1px solid #e3e3e3;
@@ -191,8 +191,32 @@ th {
 }
 tr:nth-child(even) { background: #f5fafd; }
 tr:hover { background: #e0f7fa44; }
+@media (max-width:700px) {
+  .users-permissions-table thead { display: none; }
+  .users-permissions-table, .users-permissions-table tbody, .users-permissions-table tr, .users-permissions-table td {
+    display: block;
+    width: 100%;
+  }
+  .users-permissions-table tr {
+    margin-bottom: 15px;
+    background: #f9fafd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #e3e3e3;
+    padding: 10px 8px;
+  }
+  .users-permissions-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 7px 4px;
+    font-size: 1em;
+    border-bottom: 1px solid #e3e3e3;
+  }
+  .users-permissions-table td:last-child { border-bottom: none; }
+}
 
-/* ====== MODALS ====== */
+/* المودالات */
 .modal {
   display: none;
   position: fixed;
@@ -227,7 +251,6 @@ tr:hover { background: #e0f7fa44; }
   cursor: pointer;
   z-index: 2;
 }
-
 @media (max-width:700px) {
   .modal-content {
     max-width: 99vw !important;
@@ -236,7 +259,7 @@ tr:hover { background: #e0f7fa44; }
   }
 }
 
-/* ====== INPUTS & BUTTONS ====== */
+/* الحقول والأزرار */
 input, select, textarea, button {
   font-family: inherit;
   font-size: 1em;
@@ -267,18 +290,7 @@ button {
 }
 button:hover { background: linear-gradient(90deg,#43a047 10%,#0288d1 90%); }
 
-/* ====== GENERAL SCROLL ====== */
-body, html { overflow-x: hidden; }
-::-webkit-scrollbar {
-  width: 7px;
-  background: #e0f7fa;
-}
-::-webkit-scrollbar-thumb {
-  background: #0288d1;
-  border-radius: 6px;
-}
-
-/* ====== TOAST ====== */
+/* التوست */
 .toast {
   visibility: hidden;
   min-width: 160px;
@@ -303,7 +315,7 @@ body, html { overflow-x: hidden; }
 .toast-error { background: #d32f2f; }
 .toast-warning { background: #ffb300; color: #222; }
 
-/* ====== FOOTER ====== */
+/* الفوتر */
 footer {
   margin: 0 auto;
   margin-top: 38px;
@@ -317,11 +329,10 @@ footer {
   max-width: 900px;
   box-shadow: 0 3px 13px #b5ccd8;
 }
-
 a { color: #0288d1; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ====== MOBILE OPTIMIZATION ====== */
+/* موبايل أصغر */
 @media (max-width: 430px) {
   html, body { font-size: 95%; }
   .container, .card, .center, .modal-content {
@@ -330,43 +341,17 @@ a:hover { text-decoration: underline; }
   }
   .header-action-btn { font-size: 1.03em; padding: 7px 7px; }
 }
-
 @media (max-width: 350px) {
   html, body { font-size: 89%; }
 }
 
-/* ====== MISC ====== */
+/* عام */
 .error { color: #c00; font-size: 0.98em; margin-top: 3px; }
 input[type="checkbox"] { width: 20px; height: 20px; }
 
-@media (max-width: 700px) {
-  .users-permissions-table thead { display: none; }
-  .users-permissions-table, .users-permissions-table tbody, .users-permissions-table tr, .users-permissions-table td {
-    display: block;
-    width: 100%;
-  }
-  .users-permissions-table tr {
-    margin-bottom: 15px;
-    background: #f9fafd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px #e3e3e3;
-    padding: 10px 8px;
-  }
-  .users-permissions-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: none;
-    padding: 7px 4px;
-    font-size: 1em;
-    border-bottom: 1px solid #e3e3e3;
-  }
-  .users-permissions-table td:last-child { border-bottom: none; }
-}
-
-/* حرك العناصر بالاصبع للجدول */
+/* تحسين السحب للجداول باللمس */
 table, .users-permissions-table {
   touch-action: pan-x pan-y;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
-}
+    }
